@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connections</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="client.js"></script>
+    <script defer src="dom.js"></script>
+    <script defer src="confetti.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li class="nav-item" onclick="window.location.href='/'"><a class="nav-link">Today</a></li>
+            <li class="nav-item" onclick="getRandomGame()">
+                <a class="nav-link">Random</a>
+                <select onclick="event.stopPropagation()" oninput="getRandomGame()" id="difficulty-selector">
+                    <option value="1">Very Easy</option>
+                    <option value="2">Easy</option>
+                    <option selected value="3">Normal</option>
+                    <option value="4">Hard</option>
+                    <option value="5">Very Hard</option>
+                    <option value="6">Experimental</option>
+                </select>
+            </li>
+            <li class="nav-item date-nav" onclick="getDateGame()">
+                <button class="increment-button" onclick="incrementGame(event, -1)">&lt;</button>
+                <div>
+                    <span class="date-label">Date</span>
+                    <input type="date" class="datepicker" id="datepicker" onclick="event.stopPropagation()"
+                        oninput="getDateGame()">
+                </div>
+                <button class="increment-button" onclick="incrementGame(event, 1)">&gt;</button>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="board-container">
+        <div class="flex-grid" id="board">
+            <div id="row-0">
+                <div class="item" id="item-0" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-1" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-2" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-3" onclick="itemClicked(this)"></div>
+                <div class="correct-overlay" style="background-color: #fcdc6c;">
+                    <div class="category-title"></div>
+                    <div class="item-list"></div>
+                </div>
+            </div>
+            <div id="row-1">
+                <div class="item" id="item-4" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-5" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-6" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-7" onclick="itemClicked(this)"></div>
+                <div class="correct-overlay" style="background-color: #bc84c4;">
+                    <div class="category-title"></div>
+                    <div class="item-list"></div>
+                </div>
+            </div>
+            <div id="row-2">
+                <div class="item" id="item-8" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-9" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-10" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-11" onclick="itemClicked(this)"></div>
+                <div class="correct-overlay" style="background-color: #a4c45c">
+                    <div class="category-title"></div>
+                    <div class="item-list"></div>
+                </div>
+            </div>
+            <div id="row-3">
+                <div class="item" id="item-12" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-13" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-14" onclick="itemClicked(this)"></div>
+                <div class="item" id="item-15" onclick="itemClicked(this)"></div>
+                <div class="correct-overlay" style="background-color: #b4c4ec;">
+                    <div class="category-title"></div>
+                    <div class="item-list"></div>
+                </div>
+            </div>
+
+        </div>
+        <div id="overlay-container">
+            <div id="overlay-text">
+                One Away...
+            </div>
+        </div>
+    </div>
+    <div id="button-container">
+        <button class="button" onclick="shuffleItems()">Shuffle</button>
+        <button class="button" onclick="deselectAll()">Deselect All</button>
+        <button class="button" id="submit-button" disabled onclick="submitItems()">Submit</button>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <footer>
+        <div>
+            <button id="reveal-button" class="button" onclick="revealAnswer()">Reveal Answer</button>
+            <span>Tries: </span><span id="tries-readout">0</span>
+        </div>
+        <a href="https://www.nytimes.com/games/connections" target="_blank">Connections</a>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Rubik:wght@500&display=swap");
+
+body {
+  margin: 0;
+}
+
+#board-container {
+  position: relative;
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+}
+
+#board > div {
+  display: flex;
+  justify-content: center;
+  position: relative; /* Ensure relative positioning for absolute children */
+  height: 100%;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: 100px;
+  max-width: 175px;
+  margin: 5px;
+
+  font-size: 20px;
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: #f0ece4;
+  color: black;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: all 0.5s ease;
+}
+
+.item.selected {
+  background-color: #605c4c;
+  color: azure;
+}
+
+.item.correct {
+  cursor: auto;
+  /* background-color: white; */
+}
+
+.button {
+  border: 1px solid black;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 32px;
+  line-height: 1.5em;
+  font-weight: 600;
+  background-color: white;
+
+  margin: 10px;
+
+  transition: background-color 0.5s ease;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #c4c4c4;
+}
+
+#button-container {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+}
+
+.correct-overlay {
+  position: absolute;
+  top: 0;
+  left: 50%; /* Start from the center */
+  transform: translateX(-50%); /* Center the overlay */
+  width: 100%; /* Adjust the padding based on your margin settings */
+  height: 105px;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-family: "Rubik", sans-serif;
+  transition: opacity 0.5s ease;
+
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.correct-overlay > .category-title {
+  font-weight: bold;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  margin-bottom: 25px;
+  font-family: "Rubik", sans-serif;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link,
+.date-label {
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item:hover {
+  background-color: #262626;
+  cursor: pointer;
+}
+
+.navbar select,
+.navbar input {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #555;
+  color: white;
+  outline: none;
+  color-scheme: dark;
+}
+
+.increment-button {
+  background: none;
+  justify-content: space-evenly;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.increment-button:hover {
+  background-color: #555;
+}
+
+.date-label {
+  margin-right: 5px;
+}
+
+#overlay-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+#overlay-text {
+  text-align: center;
+  font-size: 17px;
+  color: #fff;
+  background-color: black;
+  padding: 10px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 40px); /* Adjusted width to account for increased padding */
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px; /* Adjusted padding */
+  color: black;
+  align-items: flex-end;
+}
+
+#submit-button.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+#confetti-canvas {
+  /* width: 100%;
+  height: 100%; */
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+}
