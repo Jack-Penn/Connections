@@ -36,26 +36,41 @@ function fetchAllAnswers() {
     });
 }
 
+function dateToIndex(date) {
+  // Calculate the index based on the provided information
+  const startDate = new Date(2023, 10, 16);
+  const startDateIndex = 157;
+  const millisecondsInADay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+  const daysDifference = Math.floor((date - startDate) / millisecondsInADay);
+  const correspondingIndex = startDateIndex + daysDifference;
+  return correspondingIndex;
+}
+
+function indexToDate(index) {
+  const startDate = new Date(2023, 10, 16);
+  const startDateIndex = 157;
+  const millisecondsInADay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+
+  const daysDifference = index - startDateIndex;
+  const targetDate = new Date(startDate.getTime() + daysDifference * millisecondsInADay);
+
+  return targetDate;
+}
+
 export function getGame(date) {
   if (!(date instanceof Date) || isNaN(date)) {
     throw new Error("Invalid date. Please provide a valid date within the allowed range.");
   }
 
-  // Calculate the index based on the provided information
-  const startDate = new Date(2023, 10, 16);
-  const startDateIndex = 157;
-  const millisecondsInADay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
-
-  const daysDifference = Math.floor((date - startDate) / millisecondsInADay);
-  const correspondingIndex = startDateIndex + daysDifference;
+  const dateIndex = dateToIndex(date);
 
   // Check if the calculated index is within the array bounds
-  if (correspondingIndex < 0 || correspondingIndex >= gameData.length) {
-    throw new Error("Date is outside the valid range for gameData.");
+  if (dateIndex < 0 || dateIndex >= gameData.length) {
+    throw new Error("Date is outside the valid range for gameData.", date, dateIndex);
   }
 
   // Return the element at the calculated index
-  return gameData[correspondingIndex];
+  return gameData[dateIndex];
 }
 
 export function getRandomGame() {
@@ -207,8 +222,6 @@ function getRepeatedWords() {
       })
     );
   });
-
-  console.log(repeatedWords);
 
   repeatedWords = Object.entries(repeatedWords)
     .filter(([word, categories]) => Object.values(categories).length > 1)
