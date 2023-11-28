@@ -122,10 +122,9 @@ function getRandomGroups(difficulty = 3) {
     // const randomGroup = getRandomInt(4);
     const groupNum = levels[selectedGroups.length % levels.length];
 
-    const group = { day: randomDay, group: groupNum };
-
     // Ensure the group is not already selected for the same day
-    if (!selectedGroups.includes(group)) {
+    if (selectedGroups.reduce((notCopy, { day, group }) => notCopy || (day == randomDay && group == groupNum), true)) {
+      const group = { day: randomDay, group: groupNum };
       selectedGroups.push(group);
     }
   }
