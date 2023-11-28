@@ -100,7 +100,20 @@
     <footer>
         <div>
             <button id="reveal-button" class="button" onclick="revealAnswer()">Reveal Answer</button>
+            <div class="toggle-container">
+                <div>Unlimited Tries</div>
+                <div class="toggle-slider" id="unlimited-toggle" onclick="toggleSwitch(this)">
+                    <div class="toggle-circle"></div>
+                </div>
+            </div>
             <span>Tries: </span><span id="tries-readout">0</span>
+        </div>
+        <div id="mistakes-container">
+            <p>Mistakes Remaining</p>
+            <div class="mistake-dot"></div>
+            <div class="mistake-dot"></div>
+            <div class="mistake-dot"></div>
+            <div class="mistake-dot"></div>
         </div>
         <a href="https://www.nytimes.com/games/connections" target="_blank">Connections</a>
     </footer>

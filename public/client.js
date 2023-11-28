@@ -227,6 +227,8 @@ function submitItems() {
     }, (animatingItems.length + 1) * 200 + 500);
   } else {
     console.log("Incorrect!");
+    if (!isUnlimited) removeMistakeDot();
+
     const submitButton = document.getElementById("submit-button");
     submitButton.classList.add("shake");
     setTimeout(() => submitButton.classList.remove("shake"), 820);
