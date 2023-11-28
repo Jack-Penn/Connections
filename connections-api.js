@@ -73,6 +73,14 @@ export function getGame(date) {
   return gameData[dateIndex];
 }
 
+function getGameDateBounds() {
+  const start = indexToDate(0);
+  const end = indexToDate(gameData.length);
+  console.log(start, end);
+  return [start, encodeURI];
+}
+getGameDateBounds();
+
 export function getRandomGame() {
   const id = getRandomInt(gameData.length);
   return gameData[id];

@@ -17,7 +17,7 @@
         <ul>
             <li class="nav-item" onclick="window.location.href='/'"><a class="nav-link">Today</a></li>
             <li class="nav-item" onclick="getRandomGame()">
-                <a class="nav-link">Random</a>
+                <a class="nav-link">New Game</a>
                 <select onclick="event.stopPropagation()" oninput="getRandomGame()" id="difficulty-selector">
                     <option value="1">Very Easy</option>
                     <option value="2">Easy</option>
@@ -31,8 +31,8 @@
                 <button class="increment-button" onclick="incrementGame(event, -1)">&lt;</button>
                 <div>
                     <span class="date-label">Date</span>
-                    <input type="date" class="datepicker" id="datepicker" onclick="event.stopPropagation()"
-                        oninput="getDateGame()">
+                    <input type="date" class="datepicker" min="2023-06-12" max="2023-12-25" id="datepicker"
+                        onclick="event.stopPropagation()" oninput="getDateGame()">
                 </div>
                 <button class="increment-button" onclick="incrementGame(event, 1)">&gt;</button>
             </li>
